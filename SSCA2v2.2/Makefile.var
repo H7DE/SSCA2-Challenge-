@@ -19,8 +19,8 @@ CC = gcc
 #CFLAGS = -O3 PHJK: -O3 results in buggy code on simplescalar
 #CFLAGS = -O2 -DVERIFYK4
 #CFLAGS = -O2
-CFLAGS = -O2 -fopenmp
-
+#CFLAGS = -O2 -fopenmp
+CFLAGS  = -g -O2 -fopenmp
 AR = ar
 ARFLAGS = cr
 RANLIB = ranlib

@@ -5,8 +5,6 @@ import re
 problemSize = 17
 
 
-
-
 #Run program with different thread counts
 def runSSCA(numThreads, problemSize):
     successRegex = r'Kernel 4 validation successful!'
@@ -27,10 +25,11 @@ def runSSCA(numThreads, problemSize):
 
 avgScores = []
 numIter = 3
-threadRange = [4, 5 , 6, 7, 8]
+threadRange = [x for x in range(8, 21)]
 
 for i in threadRange:
     totalScore = 0
+    #print "Running iteration %d"%(i)
     for j in range(numIter):
         results = runSSCA(i, problemSize)
         if(results != None):
@@ -38,7 +37,8 @@ for i in threadRange:
         else:
             print "Oops something went wrong"
     avg = float(totalScore) / numIter
-    avgScores.append({"NumThreads": i, "avg TEPS": avg})
+    #avgScores.append({"NumThreads": i, "avg TEPS": avg})
+    avgScores.append(avg)
 print avgScores
 
 

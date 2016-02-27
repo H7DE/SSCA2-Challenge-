@@ -462,7 +462,9 @@ double betweennessCentrality(graph* G, DOUBLE_T* BC) {
     }
     }
 #endif
-    return elapsed_time;
+    //graph* G, DOUBLE_T* BC)
+	fprintf(stderr, "XXXXXXXX: v:%d e:%d\n",G->n, G->m);
+	return elapsed_time;
 }
 
 /* not recommended solution.... */

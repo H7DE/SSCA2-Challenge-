@@ -15,13 +15,17 @@ TARGET = SSCA2
 # OpenMP is supported with gcc version >= 4.2
 # To verify Kernel 4 implementation, compile with -DVERIFYK4 flag. This 
 # will generate a 2D torus as the input instance instead of the scale-free graph.
-CC = gcc
+#CC = gcc
+CC = /opt/intel/bin/icc
+#CC  = clang
+
 #CFLAGS = -O3 PHJK: -O3 results in buggy code on simplescalar
 #CFLAGS = -O2 -DVERIFYK4
-#CFLAGS = -O2
-#CFLAGS = -O2 -g -fopenmp
-CFLAGS  = -g -O2
-AR = ar
+#CFLAGS = -O3 -fopenmp
+#CFLAGS  = -openmp #clang
+CFLAGS  = -O3 -openmp 
+#AR = ar
+AR  = /opt/intel/bin/xiar
 ARFLAGS = cr
 RANLIB = ranlib
 

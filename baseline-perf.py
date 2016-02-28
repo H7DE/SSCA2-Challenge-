@@ -1,16 +1,17 @@
 #!/usr/bin/python
 import commands
 import re
+import sys
 
 problemSize = 17
 
 
 #Run program with different thread counts
-def runSSCA(numThreads, problemSize):
+def runSSCA(executableName, numThreads, problemSize):
     successRegex = r'Kernel 4 validation successful!'
     performanceRegex =r'TEPS score for Kernel 4 is (\d*.\d+)'
     
-    cmdString = './SSCA2v2.2/SSCA2 %d %d '%(numThreads, problemSize)
+    cmdString = '%s %d %d '%(executableName, numThreads, problemSize)
     out = str(commands.getstatusoutput(cmdString))
     #print out
     
@@ -22,23 +23,25 @@ def runSSCA(numThreads, problemSize):
         return float(tepsScore.group(1))
     else:
         return None
+def computeAvg(executableName):
+    avgScores = []
+    numIter = 3
+    threadRange = [x for x in range(1, 64)]
 
-avgScores = []
-numIter = 3
-threadRange = [x for x in range(8, 21)]
+    for i in threadRange:
+        totalScore = 0
+        #print "Running iteration %d"%(i)
+        for j in range(numIter):
+            results = runSSCA(executableName, i, problemSize)
+            if(results != None):
+                totalScore = totalScore + results
+            else:
+                print "Oops something went wrong"
+        avg = float(totalScore) / numIter
+        #avgScores.append({"NumThreads": i, "avg TEPS": avg})
+        avgScores.append(avg)
+    print avgScores
 
-for i in threadRange:
-    totalScore = 0
-    #print "Running iteration %d"%(i)
-    for j in range(numIter):
-        results = runSSCA(i, problemSize)
-        if(results != None):
-            totalScore = totalScore + results
-        else:
-            print "Oops something went wrong"
-    avg = float(totalScore) / numIter
-    #avgScores.append({"NumThreads": i, "avg TEPS": avg})
-    avgScores.append(avg)
-print avgScores
-
-
+if __name__ == "__main__":
+    executable = sys.argv[1] #i.e ./SSCA2
+    computeAvg(executable)

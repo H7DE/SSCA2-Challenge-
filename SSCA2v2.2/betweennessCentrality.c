@@ -75,7 +75,7 @@ double betweennessCentrality(graph* G, DOUBLE_T* BC) {
 #endif
 
     /* Initialize RNG stream */ 
-	stream = init_sprng(0, tid, nthreads, seed, SPRNG_DEFAULT);
+    stream = init_sprng(0, tid, nthreads, seed, SPRNG_DEFAULT);
 
 #ifdef _OPENMP
 #pragma omp for
@@ -463,8 +463,8 @@ double betweennessCentrality(graph* G, DOUBLE_T* BC) {
     }
 #endif
     //graph* G, DOUBLE_T* BC)
-	fprintf(stderr, "XXXXXXXX: v:%d e:%d\n",G->n, G->m);
-	return elapsed_time;
+    // fprintf(stderr, "XXXXXXXX: v:%d e:%d\n",G->n, G->m);
+    return elapsed_time;
 }
 
 /* not recommended solution.... */

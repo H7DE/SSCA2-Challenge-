@@ -14,7 +14,6 @@ def runSSCA(executableName, numThreads, problemSize):
     
     cmdString = '%s %d %d '%(executableName, numThreads, problemSize)
     out = str(commands.getstatusoutput(cmdString))
-    print out 
     #Check if run is sucessful
     match = re.search(successRegex, out)
     if match.group() != None:
@@ -25,7 +24,7 @@ def runSSCA(executableName, numThreads, problemSize):
         return None
 def computeAvg(executableName):
     avgScores = []
-    numIter = 3
+    numIter = 1
     threadRange = [x for x in range(MIN_THREAD, MAX_THREAD+1)]
 
     for i in threadRange:

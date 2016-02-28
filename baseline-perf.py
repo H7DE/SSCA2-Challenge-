@@ -24,7 +24,7 @@ def runSSCA(executableName, numThreads, problemSize):
         return None
 def computeAvg(executableName):
     avgScores = []
-    numIter = 1
+    numIter = 2
     threadRange = [x for x in range(MIN_THREAD, MAX_THREAD+1)]
 
     for i in threadRange:

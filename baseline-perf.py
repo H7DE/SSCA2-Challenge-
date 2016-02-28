@@ -4,7 +4,8 @@ import re
 import sys
 
 problemSize = 17
-
+MIN_THREAD = 1
+MAX_THREAD = 20
 
 #Run program with different thread counts
 def runSSCA(executableName, numThreads, problemSize):
@@ -13,8 +14,7 @@ def runSSCA(executableName, numThreads, problemSize):
     
     cmdString = '%s %d %d '%(executableName, numThreads, problemSize)
     out = str(commands.getstatusoutput(cmdString))
-    #print out
-    
+    print out 
     #Check if run is sucessful
     match = re.search(successRegex, out)
     if match.group() != None:
@@ -26,7 +26,7 @@ def runSSCA(executableName, numThreads, problemSize):
 def computeAvg(executableName):
     avgScores = []
     numIter = 3
-    threadRange = [x for x in range(1, 64)]
+    threadRange = [x for x in range(MIN_THREAD, MAX_THREAD+1)]
 
     for i in threadRange:
         totalScore = 0

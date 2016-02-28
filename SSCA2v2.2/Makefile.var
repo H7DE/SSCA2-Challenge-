@@ -21,7 +21,9 @@ CC = gcc
 
 #CFLAGS = -O3 PHJK: -O3 results in buggy code on simplescalar
 #CFLAGS = -O2 -DVERIFYK4
-CFLAGS = -O2 -fopenmp
+#CFLAGS = -O3 -fopenmp -fprofile-generate
+#CFLAGS = -O3 -Wno-error=coverage-mismatch -fopenmp -fprofile-use
+CFLAGS = -O3 -fopenmp -fprofile-correction -fprofile-use
 #CFLAGS  = -openmp #clang
 #CFLAGS  = -O3 -openmp 
 AR = ar

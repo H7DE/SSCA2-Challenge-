@@ -162,8 +162,7 @@ double computeGraph(graph* G, graphSDG* SDGdata) {
         u = SDGdata->startVertex[i];
         j = numEdges[u] + pos[i];
         endV[j] = SDGdata->endVertex[i];
-        //w[j] = SDGdata->weight[i];
-		w[j] = 1;
+        w[j] = SDGdata->weight[i];
     }
     
 #ifdef DIAGNOSTIC
